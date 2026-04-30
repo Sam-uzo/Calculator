@@ -1,0 +1,78 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.display {
+  width: 100%;
+  display: flex;
+}
+.display input {
+  width: 100%;
+  font-size: 30px;
+}
+main {
+  gap: 5%;
+  width: 50%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0px;
+  width: 100%;
+}
+.first-mini-div {
+  height: 100%;
+  width: 75%;
+  margin: 0;
+  padding: 0;
+}
+.second-mini-div {
+  width: 25%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+span {
+  width: 100%;
+  height: 100%;
+}
+.first-mini-div input {
+  width: 32%;
+}
+
+.second-mini-div input {
+  width: 100%;
+}
+.equal {
+  height: 120px;
+}
+input {
+  height: 60px;
+  font-size: 20px;
+}
+@media (max-width: 550px) {
+  main {
+    width: 100%;
+  }
+  .first-mini-div input {
+    width: 30%;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .second-mini-div input {
+    width: 100%;
+    font-size: 15px;
+    font-weight: 600;
+  }
+}

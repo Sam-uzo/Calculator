@@ -1,0 +1,53 @@
+<!DOCTYPE >
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0" />
+    <title>CALCULATOR</title>
+    <link rel="stylesheet" href="calculator.css" />
+  </head>
+  <body>
+    <main>
+      <div class="display">
+        <input type="text" value="" class="display-input" />
+      </div>
+
+      <div class="inputs">
+        <div class="first-mini-div">
+          <span>
+            <input type="button" value="AC" class="AC" />
+            <input type="button" value="/" class="divide"/>
+            <input type="button" value="*" class="multiply"/>
+          </span>
+          <div>
+            <input type="button" value="7" class="seven"/>
+            <input type="button" value="8" class="eight"/>
+            <input type="button" value="9" class="nine"/>
+          </div>
+          <div>
+            <input type="button" value="4" class="four"/>
+            <input type="button" value="5" class="five"/>
+            <input type="button" value="6" class="six"/>
+          </div>
+          <div>
+            <input type="button" value="1" class="one"/>
+            <input type="button" value="2" class="two"/>
+            <input type="button" value="3" class="three"/>
+          </div>
+          <div>
+            <input type="button" value="%" class="percentage"/>
+            <input type="button" value="0" class="zero"/>
+            <input type="button" value="." class="dot"/>
+          </div>
+        </div>
+        <div class="second-mini-div">
+          <div><input type="button" value="DEL" class="delete"/></div>
+          <div><input type="button" value="-" class="subtract"/></div>
+          <div><input type="button" value="+" class="add"/></div>
+          <div><input class="equal" type="button" value="=" /></div>
+        </div>
+      </div>
+    </main>
+    <script src="calculator.js"></script>
+  </body>
+</html>
