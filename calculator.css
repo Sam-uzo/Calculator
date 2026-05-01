@@ -3,6 +3,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-color: rgb(126, 93, 43);
 }
 .display {
   width: 100%;
@@ -11,11 +12,17 @@ body {
 .display input {
   width: 100%;
   font-size: 30px;
+  border-radius: 0px;
+  background-color: white;
+  color: black;
 }
 main {
+  background-color: blanchedalmond;
+  padding: 5%;
+  border-radius: 10%;
   gap: 5%;
   width: 50%;
-  height: 100vh;
+  height: 70%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -32,8 +39,8 @@ main {
 .first-mini-div {
   height: 100%;
   width: 75%;
-  margin: 0;
-  padding: 0;
+  /* margin: 0;
+  padding: 0; */
 }
 .second-mini-div {
   width: 25%;
@@ -42,6 +49,7 @@ main {
   padding: 0;
   display: flex;
   flex-direction: column;
+  column-gap: 10%;
 }
 span {
   width: 100%;
@@ -50,9 +58,20 @@ span {
 .first-mini-div input {
   width: 32%;
 }
-
+.first-mini-div input:hover {
+  animation-name: spin;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
 .second-mini-div input {
   width: 100%;
+}
+.second-mini-div input:hover {
+  animation-name: spin;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
 }
 .equal {
   height: 120px;
@@ -60,7 +79,13 @@ span {
 input {
   height: 60px;
   font-size: 20px;
+  background-color: rgb(98, 0, 255);
+  border-width: 1px;
+  border-color: white;
+  border-radius: 10%;
+  color: white;
 }
+
 @media (max-width: 550px) {
   main {
     width: 100%;
@@ -74,5 +99,19 @@ input {
     width: 100%;
     font-size: 15px;
     font-weight: 600;
+  }
+}
+@keyframes spin {
+  0% {
+    scale: 2;
+  }
+  50% {
+    transform: rotateY(-180deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+    border-color: white;
+    border-radius: 20%;
+    background-color: rgb(188, 9, 204);
   }
 }
