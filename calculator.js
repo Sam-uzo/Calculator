@@ -1,5 +1,8 @@
 let toCalculate;
 let inputValue;
+let saveState = 0;
+let displayed = false;
+const h4Element = document.querySelector(".h4-tag");
 const AC = document.querySelector(".AC");
 const DELETE = document.querySelector(".delete");
 const DIVIDE = document.querySelector(".divide");
@@ -20,28 +23,35 @@ const SEVEN = document.querySelector(".seven");
 const EIGHT = document.querySelector(".eight");
 const NINE = document.querySelector(".nine");
 const DISPLAY_INPUT = document.querySelector(".display-input");
-const BUTTONS = [
-  AC,
-  DELETE,
-  DIVIDE,
-  ADD,
-  SUBTRACT,
-  MULTIPLY,
-  EQUAL,
-  DOT,
-  PERCENT,
-  ZERO,
-  ONE,
-  TWO,
-  THREE,
-  FOUR,
-  FIVE,
-  SIX,
-  SEVEN,
-  EIGHT,
-  NINE,
-  DISPLAY_INPUT,
-];
+const selectDiv = document.getElementById(`select-div`);
+const h4Div = document.getElementById(`h4-div`);
+const option1 = document.getElementById(`first-option`);
+const option2 = document.getElementById(`second-option`);
+const option3 = document.getElementById(`third-option`);
+const option4 = document.getElementById(`fourth-option`);
+
+// const BUTTONS = [
+//   AC,
+//   DELETE,
+//   DIVIDE,
+//   ADD,
+//   SUBTRACT,
+//   MULTIPLY,
+//   EQUAL,
+//   DOT,
+//   PERCENT,
+//   ZERO,
+//   ONE,
+//   TWO,
+//   THREE,
+//   FOUR,
+//   FIVE,
+//   SIX,
+//   SEVEN,
+//   EIGHT,
+//   NINE,
+//   DISPLAY_INPUT,
+// ];
 
 //Generic Function
 function buttonBehave(buttonName, buttonProp) {
@@ -52,45 +62,35 @@ function buttonBehave(buttonName, buttonProp) {
 //Keyboard optimization
 document.addEventListener(`keydown`, (event) => {
   switch (event.key) {
-      case `1`:
-           DISPLAY_INPUT.value += `1`;
-      console.log(`The key which is known as the key of 1 has been pressed`);
+    case `1`:
+      DISPLAY_INPUT.value += `1`;
       break;
     case `2`:
       DISPLAY_INPUT.value += `2`;
-      console.log(`The key which is known as the key of 2 has been pressed`);
       break;
     case `3`:
       DISPLAY_INPUT.value += `3`;
-      console.log(`The key which is known as the key of 3 has been pressed`);
       break;
     case `4`:
       DISPLAY_INPUT.value += `4`;
-      console.log(`The key which is known as the key of 4 has been pressed`);
       break;
     case `5`:
       DISPLAY_INPUT.value += `5`;
-      console.log(`The key which is known as the key of 5 has been pressed`);
       break;
     case `6`:
       DISPLAY_INPUT.value += `6`;
-      console.log(`The key which is known as the key of 6 has been pressed`);
       break;
     case `7`:
       DISPLAY_INPUT.value += `7`;
-      console.log(`The key which is known as the key of 7 has been pressed`);
       break;
     case `8`:
       DISPLAY_INPUT.value += `8`;
-      console.log(`The key which is known as the key of 8 has been pressed`);
       break;
     case `9`:
       DISPLAY_INPUT.value += `9`;
-      console.log(`The key which is known as the key of 9 has been pressed`);
       break;
     case `0`:
       DISPLAY_INPUT.value += `0`;
-      console.log(`The key which is known as the key of 0 has been pressed`);
       break;
     case `Enter`:
       if (DISPLAY_INPUT.value == ``) {
@@ -107,24 +107,50 @@ document.addEventListener(`keydown`, (event) => {
       } else {
         toCalculate = DISPLAY_INPUT.value;
         DISPLAY_INPUT.value = eval(toCalculate);
+        if (displayed == false) {
+          h4Div.style.display = `block`;
+          displayed = true;
+        } else if (displayed == true) {
+          h4Div.style.display = `none`;
+        }
+
+        setTimeout(() => {
+          h4Div.style.display = `none`;
+          selectDiv.style.display = `block`;
+          if (saveState == 0) {
+            option1.textContent = DISPLAY_INPUT.value;
+            saveState += 1;
+          } else if (saveState == 1) {
+            option2.textContent = DISPLAY_INPUT.value;
+            saveState += 1;
+          } else if (saveState == 2) {
+            option3.textContent = DISPLAY_INPUT.value;
+            saveState += 1;
+          } else if (saveState == 3) {
+            option4.textContent = DISPLAY_INPUT.value;
+            saveState += 1;
+            if (saveState == 4) {
+              setTimeout(() => {
+                h4Element.textContent = `Storage full‼️Refresh page`;
+                h4Element.style.color = `red`;
+                h4Div.style.display = `block`;
+                setTimeout(() => {
+                  h4Div.style.display = `none`;
+                }, 3000);
+              }, 1000);
+            }
+          }
+        }, 2000);
       }
-      console.log(
-        `The key which is known as the key of enter has been pressed`,
-      );
       break;
     case `Backspace`:
       DISPLAY_INPUT.value = DISPLAY_INPUT.value.slice(0, -1);
-      console.log(
-        `The key which is known as the key of backspace has been pressed`,
-      );
       break;
     case `%`:
       DISPLAY_INPUT.value += `%`;
-      console.log(`The key which is known as the key of % has been pressed`);
       break;
     case `.`:
       DISPLAY_INPUT.value += `.`;
-      console.log(`The key which is known as the key of . has been pressed`);
       break;
     case `+`:
       DISPLAY_INPUT.value += `+`;
@@ -156,11 +182,7 @@ function deleteButton() {
     DISPLAY_INPUT.value = DISPLAY_INPUT.value.slice(0, -1);
   });
 }
-deleteButton();
-buttonBehave(DIVIDE, `/`);
-buttonBehave(ADD, `+`);
-buttonBehave(SUBTRACT, `-`);
-buttonBehave(MULTIPLY, `*`);
+
 //A seperate function for the equal to button
 function equalBehave() {
   EQUAL.addEventListener(`click`, () => {
@@ -178,11 +200,61 @@ function equalBehave() {
     } else {
       toCalculate = DISPLAY_INPUT.value;
       DISPLAY_INPUT.value = eval(toCalculate);
+      if (displayed == false) {
+        h4Div.style.display = `block`;
+        displayed = true;
+      } else if (displayed == true) {
+        h4Div.style.display = `none`;
+      }
+
+      setTimeout(() => {
+        h4Div.style.display = `none`;
+        selectDiv.style.display = `block`;
+        if (saveState == 0) {
+          option1.textContent = DISPLAY_INPUT.value;
+          saveState += 1;
+        } else if (saveState == 1) {
+          option2.textContent = DISPLAY_INPUT.value;
+          saveState += 1;
+        } else if (saveState == 2) {
+          option3.textContent = DISPLAY_INPUT.value;
+          saveState += 1;
+        } else if (saveState == 3) {
+          option4.textContent = DISPLAY_INPUT.value;
+          saveState += 1;
+          if (saveState == 4) {
+            setTimeout(() => {
+              h4Element.textContent = `Storage full‼️Refresh page`;
+              h4Element.style.color = `red`;
+              h4Div.style.display = `block`;
+              setTimeout(() => {
+                h4Div.style.display = `none`;
+              }, 3000);
+            }, 1000);
+          }
+        }
+      }, 2000);
     }
   });
 }
 equalBehave();
+deleteButton();
+buttonBehave(DIVIDE, `/`);
+buttonBehave(ADD, `+`);
+buttonBehave(SUBTRACT, `-`);
+buttonBehave(MULTIPLY, `*`);
 buttonBehave(DOT, `.`);
+buttonBehave(ZERO, `0`);
+buttonBehave(ONE, `1`);
+buttonBehave(TWO, `2`);
+buttonBehave(THREE, `3`);
+buttonBehave(FOUR, `4`);
+buttonBehave(FIVE, `5`);
+buttonBehave(SIX, `6`);
+buttonBehave(SEVEN, `7`);
+buttonBehave(EIGHT, `8`);
+buttonBehave(NINE, `9`);
+
 PERCENT.addEventListener(`click`, () => {
   if (DISPLAY_INPUT.value == ``) {
     // DISPLAY_INPUT.style.color = `red`;
@@ -200,14 +272,3 @@ PERCENT.addEventListener(`click`, () => {
     DISPLAY_INPUT.value = DISPLAY_INPUT.value * 100;
   }
 });
-
-buttonBehave(ZERO, `0`);
-buttonBehave(ONE, `1`);
-buttonBehave(TWO, `2`);
-buttonBehave(THREE, `3`);
-buttonBehave(FOUR, `4`);
-buttonBehave(FIVE, `5`);
-buttonBehave(SIX, `6`);
-buttonBehave(SEVEN, `7`);
-buttonBehave(EIGHT, `8`);
-buttonBehave(NINE, `9`);
