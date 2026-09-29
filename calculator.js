@@ -49,6 +49,7 @@ const option4 = document.getElementById(`fourth-option`);
 //   SIX,
 //   SEVEN,
 //   EIGHT,
+
 //   NINE,
 //   DISPLAY_INPUT,
 // ];
@@ -61,6 +62,7 @@ function buttonBehave(buttonName, buttonProp) {
 }
 //Keyboard optimization
 document.addEventListener(`keydown`, (event) => {
+  event.preventDefault()
   switch (event.key) {
     case `1`:
       DISPLAY_INPUT.value += `1`;
