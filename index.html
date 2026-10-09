@@ -1,65 +1,72 @@
-<!DOCTYPE >
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale = 1.0" />
-    <title>CALCULATOR</title>
-    <link rel="stylesheet" href="calculator.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0d0b1a" />
+    <title>Calculator</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <main>
-      <div id="h4-div">
-        <h4 class="h4-tag">Your last calculation has been stored✅</h4>
-      </div>
-      <div id="select-div">
-        <select name="Colours" id="dropdown">
-          <option value="" >Prev-calc</option>
-          <option value="" id="first-option"></option>
-          <option value="" id="second-option"></option>
-          <option value="" id="third-option"></option>
-          <option value="" id="fourth-option"></option>
-        </select>
-      </div>
-      <div class="display">
-        <input type="text" value="" class="display-input" />
+      <div class="status">
+        <div id="h4-div">
+          <h4 class="h4-tag">Your last calculation has been stored ✅</h4>
+        </div>
+        <div id="select-div">
+          <select
+            name="previous-results"
+            id="dropdown"
+            aria-label="Previous results"
+          >
+            <option value="">Previous results</option>
+            <option value="" id="first-option"></option>
+            <option value="" id="second-option"></option>
+            <option value="" id="third-option"></option>
+            <option value="" id="fourth-option"></option>
+          </select>
+        </div>
       </div>
 
-      <div class="inputs">
-        <div class="first-mini-div">
-          <span>
-            <input type="button" value="AC" class="AC" />
-            <input type="button" value="/" class="divide"/>
-            <input type="button" value="*" class="multiply"/>
-          </span>
-          <div>
-            <input type="button" value="7" class="seven"/>
-            <input type="button" value="8" class="eight"/>
-            <input type="button" value="9" class="nine"/>
-          </div>
-          <div>
-            <input type="button" value="4" class="four"/>
-            <input type="button" value="5" class="five"/>
-            <input type="button" value="6" class="six"/>
-          </div>
-          <div>
-            <input type="button" value="1" class="one"/>
-            <input type="button" value="2" class="two"/>
-            <input type="button" value="3" class="three"/>
-          </div>
-          <div>
-            <input type="button" value="%" class="percentage"/>
-            <input type="button" value="0" class="zero"/>
-            <input type="button" value="." class="dot"/>
-          </div>
-        </div>
-        <div class="second-mini-div">
-          <div><input type="button" value="DEL" class="delete"/></div>
-          <div><input type="button" value="-" class="subtract"/></div>
-          <div><input type="button" value="+" class="add"/></div>
-          <div><input class="equal" type="button" value="=" /></div>
-        </div>
+      <div class="display">
+        <input
+          type="text"
+          value=""
+          class="display-input"
+          aria-label="Calculator display"
+          autocomplete="off"
+          readonly
+        />
+      </div>
+
+      <div class="keys">
+        <button type="button" class="AC" aria-label="All clear">AC</button>
+        <button type="button" class="divide" aria-label="Divide">÷</button>
+        <button type="button" class="multiply" aria-label="Multiply">×</button>
+        <button type="button" class="delete" aria-label="Delete last digit">
+          DEL
+        </button>
+
+        <button type="button" class="seven">7</button>
+        <button type="button" class="eight">8</button>
+        <button type="button" class="nine">9</button>
+        <button type="button" class="subtract" aria-label="Subtract">−</button>
+
+        <button type="button" class="four">4</button>
+        <button type="button" class="five">5</button>
+        <button type="button" class="six">6</button>
+        <button type="button" class="add" aria-label="Add">+</button>
+
+        <button type="button" class="one">1</button>
+        <button type="button" class="two">2</button>
+        <button type="button" class="three">3</button>
+        <button type="button" class="equal" aria-label="Equals">=</button>
+
+        <button type="button" class="percentage" aria-label="Percent">%</button>
+        <button type="button" class="zero">0</button>
+        <button type="button" class="dot" aria-label="Decimal point">.</button>
       </div>
     </main>
-    <script src="calculator.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
