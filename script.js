@@ -187,3 +187,44 @@ document.addEventListener("keydown", (event) => {
     actionKeys[event.key]();
   }
 });
+
+const themeToggle = document.getElementById("theme-toggle");
+const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+const themeColors = { dark: "#0d0b1a", light: "#eeeafd" };
+
+function getSavedTheme() {
+  try {
+    return localStorage.getItem("theme");
+  } catch (error) {
+    return null;
+  }
+}
+
+function saveTheme(theme) {
+  try {
+    localStorage.setItem("theme", theme);
+  } catch (error) {
+    return;
+  }
+}
+
+function applyTheme(theme) {
+  document.documentElement.dataset.theme = theme;
+  themeToggle.setAttribute("aria-checked", theme === "dark");
+  themeColorMeta.setAttribute("content", themeColors[theme]);
+}
+
+themeToggle.addEventListener("click", (event) => {
+  const nextTheme =
+    document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+  applyTheme(nextTheme);
+  saveTheme(nextTheme);
+
+  if (event.detail > 0) themeToggle.blur();
+});
+
+themeToggle.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") event.stopPropagation();
+});
+
+applyTheme(getSavedTheme() === "light" ? "light" : "dark");
