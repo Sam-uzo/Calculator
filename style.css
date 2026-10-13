@@ -261,7 +261,14 @@ option {
 }
 
 .display {
+  position: relative;
   display: flex;
+  min-height: 112px;
+  padding-bottom: 24px;
+  overflow: hidden;
+  border-radius: 16px;
+  background: var(--display-bg);
+  border: 1px solid var(--display-border);
 }
 .display-input {
   width: 100%;
@@ -273,9 +280,9 @@ option {
   font-variant-numeric: tabular-nums;
   text-align: right;
   color: var(--text);
-  background: var(--display-bg);
-  border: 1px solid var(--display-border);
-  border-radius: 16px;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
   caret-color: transparent;
   outline: none;
   text-overflow: ellipsis;
@@ -284,6 +291,33 @@ option {
   font-size: 1.1rem;
   font-weight: 500;
   color: var(--danger);
+}
+
+.live-result {
+  position: absolute;
+  right: 18px;
+  bottom: 5px;
+  max-width: calc(100% - 36px);
+  overflow: hidden;
+  color: var(--success);
+  font-size: 1rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.display-input.show-result {
+  animation: result-moves-up 0.35s ease forwards;
+}
+
+@keyframes result-moves-up {
+  from {
+    transform: translateY(12px);
+    opacity: 0.4;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .keys {
@@ -421,12 +455,18 @@ option {
     height: 74px;
     font-size: 2rem;
   }
+
+  .display {
+    min-height: 98px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .keys button,
   .theme-toggle,
-  .theme-thumb {
+  .theme-thumb,
+  .display-input.show-result {
     transition: none;
+    animation: none;
   }
 }

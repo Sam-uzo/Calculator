@@ -1,4 +1,5 @@
 const display = document.querySelector(".display-input");
+const liveResult = document.querySelector(".live-result");
 const messageText = document.querySelector(".h4-tag");
 const messageDiv = document.getElementById("h4-div");
 const savedDiv = document.getElementById("select-div");
@@ -44,6 +45,7 @@ function isShowingError() {
 function showError(message) {
   clearTimeout(errorTimer);
   display.value = message;
+  liveResult.textContent = "";
   display.classList.add("error");
   errorTimer = setTimeout(clearDisplay, 1000);
 }
@@ -51,17 +53,22 @@ function showError(message) {
 function addToDisplay(text) {
   if (isShowingError()) return;
   display.value += text;
+  display.classList.remove("show-result");
+  updateLiveResult();
 }
 
 function clearDisplay() {
   clearTimeout(errorTimer);
   display.value = "";
-  display.classList.remove("error");
+  liveResult.textContent = "";
+  display.classList.remove("error", "show-result");
 }
 
 function deleteLast() {
   if (isShowingError()) return;
   display.value = display.value.slice(0, -1);
+  display.classList.remove("show-result");
+  updateLiveResult();
 }
 
 function convertToPercent() {
@@ -79,6 +86,7 @@ function convertToPercent() {
   }
 
   display.value = number * 100;
+  updateLiveResult();
 }
 
 function showFirstTimeMessage() {
@@ -118,6 +126,27 @@ function saveResult(result) {
   }, 2000);
 }
 
+function updateLiveResult() {
+  const expression = display.value.trim();
+  const allowedCharacters = /^[0-9+\-*/.\s]+$/;
+
+  if (!expression || !allowedCharacters.test(expression) || /[+\-*/.]$/.test(expression)) {
+    liveResult.textContent = "";
+    return;
+  }
+
+  try {
+    const result = eval(expression);
+    if (Number.isFinite(result)) {
+      liveResult.textContent = "= " + parseFloat(result.toPrecision(12));
+    } else {
+      liveResult.textContent = "";
+    }
+  } catch (error) {
+    liveResult.textContent = "";
+  }
+}
+
 function calculate() {
   if (isShowingError()) return;
 
@@ -155,6 +184,10 @@ function calculate() {
   if (String(result) === expression) return;
 
   display.value = result;
+  liveResult.textContent = "";
+  display.classList.remove("show-result");
+  void display.offsetWidth;
+  display.classList.add("show-result");
   showFirstTimeMessage();
   saveResult(result);
 }
